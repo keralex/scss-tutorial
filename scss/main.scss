@@ -1,11 +1,24 @@
-$primary-color: #313131;
-$accent-color: #ff7323;
-$text-color: #ffffff;
-$font-weights: (
-  "regular": 400,
-  "medium": 500,
-  "bold": 700
-);
+// partials 
+@import './resets';
+@import './variables';
+// funtions
+@function weight($weight-name) {
+  @return map-get($font-weights, $weight-name );
+}
+// mixins
+@mixin flexCenter($direction) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: $direction;
+}
+@mixin theme($light-theme: true) {
+ // this will invert the color 
+  @if $light-theme {
+    background: lighten($primary-color, 100%);
+    color: darken($text-color, 100%);
+  }
+}
 body {
   background-color: $primary-color;
   color:$text-color;
@@ -13,6 +26,7 @@ body {
 .main {
   width: 80%;
   margin: 0 auto;
+  @include flexCenter(column);
   // everything inside the main class and ends in "paragraph" will have this properties
   #{&}-paragraph {
     font-weight: map-get($font-weights,bold );
@@ -20,5 +34,7 @@ body {
       color: pink;
     }
   }
-
+}
+.light { 
+  @include theme($light-theme: false);
 }
