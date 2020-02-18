@@ -19,6 +19,13 @@
     color: darken($text-color, 100%);
   }
 }
+// media querie to make it responsive
+@mixin mobile {
+  @media (max-width: $mobile){
+    @content; 
+  }
+}
+
 body {
   background-color: $primary-color;
   color:$text-color;
@@ -26,15 +33,27 @@ body {
 .main {
   width: 80%;
   margin: 0 auto;
-  @include flexCenter(column);
-  // everything inside the main class and ends in "paragraph" will have this properties
-  #{&}-paragraph {
+  @include flexCenter(row);
+  // everything inside the main class and ends in "paragraph" will have this properties thanks to "#{&}"
+  #{&}-paragraph1 {
     font-weight: map-get($font-weights,bold );
     &:hover {
       color: pink;
     }
   }
+
+  #{&}-paragraph2 {
+    @extend .main-paragraph1;
+    &:hover {
+      color: $accent-color;
+    }
+  }
+
+
+  @include mobile {
+    flex-direction: column;
+  }
 }
 .light { 
-  @include theme($light-theme: false);
+  @include theme($light-theme: true);
 }
