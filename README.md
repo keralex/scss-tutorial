@@ -13,5 +13,5 @@ TUTORIAL: 
     font-weight: map-get($font-weights,bold );
     }
   *A partial is simply an Sass file preceded by an underscore. The underscore tells Sass that the file is a partial and that it should not be compiled to CSS. in this tutorial _reset is a partial file
-  *you can create funtions inside the mixins
+  *you can create funtions inside the funtions
   *to call a mixin you use @include
